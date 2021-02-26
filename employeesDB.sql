@@ -1,9 +1,9 @@
--- drop the the employees_db if it exists currently
-drop database if exists employees_db;
+-- drop the the employeesDB if it exists currently
+DROP DATABASE IF EXISTS employeesDB;
 -- create the employees_db 
-CREATE DATABASE employees_db;
--- USE so the code will affect employees_db
-USE employees_db;
+CREATE DATABASE employeesDB;
+-- USE so the code will affect employeesDB
+USE employeesDB;
 -- CREATE the table "employee"
 CREATE TABLE employee (
     id INT AUTO_INCREMENT,
@@ -27,3 +27,10 @@ CREATE TABLE department (
     name varchar(30) NOT NULL,
     PRIMARY KEY(id)
 );
+
+-- create sample employees
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES ('Stephen', 'Wright', '1', '1');
+
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES ('Thom', 'Yorke', '2', '2');

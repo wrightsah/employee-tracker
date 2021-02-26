@@ -60,19 +60,38 @@ const viewMenuFunc = () => {
     })
     .then((answer) => {
         // Based on the answer, run an approprate function
-        if (answer.mainMenu === "View all EMPLOYEES") {
+        if (answer.viewMenu === "View all EMPLOYEES") {
           //run function viewEmployees
-          console.log(`${answer.mainMenu}`);
-
-        } else if (answer.mainMenu === "View all ROLES'") {
+          console.log('viewEmployees selected');
+            viewEmployees();
+        } else if (answer.viewMenu === "View all ROLES'") {
           //run function viewRoles
-          console.log(`Run the ${answer.mainMenu} function`);
-        } else if (answer.mainMenu === "View all DEPARTMENTS") {
+          console.log('viewRoles');
+        } else if (answer.viewMenu === "View all DEPARTMENTS") {
           //run function viewDepartments
-          console.log(`Run the ${answer.mainMenu} function`);
+          console.log('viewDepartments');
         }
     });
 }
+
+    // Function to view all employees
+
+    const viewEmployees = () => {
+        console.log('viewEmployees is running');
+        connection.query('SELECT * FROM employee', (err, res) => {
+            if (err) throw err;
+            console.log(res);
+            res.forEach(({id, first_name, last_name, role_id, manager_id}) => {
+                console.log(`${id} | ${first_name} | ${last_name} | ${role_id} | ${manager_id}`);
+            });
+        })
+    }
+    
+    // Function to view all roles
+
+    // Function to view all departments
+
+
 
 // - - - - - - - - - - ADD - - - - - - - - - -// 
 
@@ -91,6 +110,12 @@ const viewMenuFunc = () => {
 
 // - - - - - - - - - - UPDATE - - - - - - - - - -// 
 
+// Connect to database
+connection.connect((err) => {
+    if (err) throw err;
+    console.log(`Connected as id ${connection.threadId}`);
+    start(); 
+});
 
 // Make the function go back to start
-start(); 
+
