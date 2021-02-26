@@ -4,46 +4,93 @@ const mysql = require("mysql");
 const inquirer = require("inquirer");
 const consoletable = require("console.table");
 
-// function to run questions for main menu
+// initialize database
+
+const connection = mysql.createConnection({
+    host: 'localhost',
+    // port
+    port: 3306,
+    // username
+    user: 'root',
+    // password
+    password: 'Mysql2021',
+    //database
+    database: 'employeesDB'
+});
+
+// - - - - - - - - - - MAIN MENU - - - - - - - - - - //
 
 const start = () => {
   // inquirer questions
 
-  inquirer.prompt({
+  inquirer
+    .prompt({
       // "What would you like to do?"
-      name: 'mainMenu',
-      type: 'list', 
-      message: 'What would you like to do?', 
-      choices: ['Add new EMPLOYEE','Add new ROLE', 'Add new DEPARTMENT'],
-  })
+      name: "mainMenu",
+      type: "list",
+      message: "What would you like to do?",
+      choices: ["VIEW", "ADD", "UPDATE"],
+    })
+    .then((answer) => {
+      // Based on the answer, run an approprate function
+      if (answer.mainMenu === "VIEW") {
+        //run function viewMenuFunc
+        viewMenuFunc();
+        
+      } else if (answer.mainMenu === "ADD") {
+        //run function addMenuFunc
+        console.log(`Run the ${answer.mainMenu} function`);
+      } else if (answer.mainMenu === "UPDATE") {
+        //run function updateMenuFunc
+        console.log(`Run the ${answer.mainMenu} function`);
+      }
+    
+    });
+}
+// - - - - - - - - - - VIEW - - - - - - - - - -//
+const viewMenuFunc = () => {
+    inquirer
+    .prompt({
+        // What would you like to view?
+        name: 'viewMenu',
+        type: 'list',
+        message: 'What would you like to view?',
+        choices: ['View all EMPLOYEES','View all ROLES', 'View all DEPARTMENTS'],
+
+    })
     .then((answer) => {
         // Based on the answer, run an approprate function
-        if (answer.mainMenu === 'Add new EMPLOYEE') {
-            //run function addEmployee
-            console.log(answer.mainMenu);
-        } else if (answer.mainMenu === 'Add new ROLE') {
-            //run function addRole
-            console.log(answer.mainMenu);
-        } else if (answer.mainMenu === 'Add new DEPARTMENT') {
-            //run function addDepartment
-            console.log(answer.mainMenu);
+        if (answer.mainMenu === "View all EMPLOYEES") {
+          //run function viewEmployees
+          console.log(`${answer.mainMenu}`);
+
+        } else if (answer.mainMenu === "View all ROLES'") {
+          //run function viewRoles
+          console.log(`Run the ${answer.mainMenu} function`);
+        } else if (answer.mainMenu === "View all DEPARTMENTS") {
+          //run function viewDepartments
+          console.log(`Run the ${answer.mainMenu} function`);
         }
     });
-    // Function to add new employee
-    // What do I need when inserting a new employee?
-    // insert into [table name] (first_name, last_name, role_id, manager_id) values ('john', 'smith', etc.);
+}
+
+// - - - - - - - - - - ADD - - - - - - - - - -// 
 
 
-    // Function to "Add new role"
-    // What do I need when inserting a new role?
+  // Function to add new employee - addEmployee
+  // What do I need when inserting a new employee?
+  // insert into [table name] (first_name, last_name, role_id, manager_id) values ('john', 'smith', etc.);
+
+  // Function to "Add new role" - addRole
+  // What do I need when inserting a new role?
+
+  // Function "Add new department" - addDepartment
+  // What do I need when inserting a new department?
+  
 
 
-    // Function "Add new department"
-    // What do I need when inserting a new department?
-  };
-    
+// - - - - - - - - - - UPDATE - - - - - - - - - -// 
 
 
-  // Make the function go back to start
-
-start();
+// Make the function go back to start
+start(); 
