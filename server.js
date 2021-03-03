@@ -39,7 +39,7 @@ const start = () => {
         
       } else if (answer.mainMenu === "ADD") {
         //run function addMenuFunc
-        console.log(`Run the ${answer.mainMenu} function`);
+        addMenuFunc();
       } else if (answer.mainMenu === "UPDATE") {
         //run function updateMenuFunc
         console.log(`Run the ${answer.mainMenu} function`);
@@ -95,10 +95,42 @@ const viewMenuFunc = () => {
 
 // - - - - - - - - - - ADD - - - - - - - - - -// 
 
+// General add menu
+
+const addMenuFunc = () => {
+  inquirer
+  .prompt({
+      // What would you like to add?
+      name: 'addMenu',
+      type: 'list',
+      message: 'What would you like to add?',
+      choices: ['Add new EMPLOYEE','Add new ROLE', 'Add new DEPARTMENT'],
+
+  })
+  .then((answer) => {
+      // Based on the answer, run an approprate function
+      if (answer.viewMenu === "Add new EMPLOYEE") {
+        //run function addEmployee
+        console.log('addEmployee');
+          addEmployee();
+      } else if (answer.viewMenu === "Add new ROLE") {
+        //run function addRole
+        console.log('addRole');
+      } else if (answer.viewMenu === "Add new DEPARTMENT") {
+        //run function addDepartment
+        console.log('addDepartment');
+      }
+  });
+}
+
 
   // Function to add new employee - addEmployee
   // What do I need when inserting a new employee?
   // insert into [table name] (first_name, last_name, role_id, manager_id) values ('john', 'smith', etc.);
+
+  const addEmployee = () => {
+
+  }
 
   // Function to "Add new role" - addRole
   // What do I need when inserting a new role?
