@@ -241,6 +241,18 @@ const updateMenuFunc = () => {
     });
 };
 
+// Function to UPDATE EMPLOYEE
+
+// const updateEmployee = () => {
+//   inquirer
+//   .prompt({
+//     name: 'updateEmployeeMenu', 
+//     type: 'list', 
+//     message: 'Which employee would you like to update?', 
+//     choices: ['']
+//   })
+// }
+
 // Connect to database
 connection.connect((err) => {
   if (err) throw err;
