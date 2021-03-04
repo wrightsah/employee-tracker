@@ -63,10 +63,10 @@ const viewMenuFunc = () => {
         viewEmployees();
       } else if (answer.viewMenu === "View all ROLES") {
         //run function viewRoles
-        console.log("viewRoles");
+        viewRoles();
       } else if (answer.viewMenu === "View all DEPARTMENTS") {
         //run function viewDepartments
-        console.log("viewDepartments");
+        viewDepartments();
       }
     });
 };
@@ -89,10 +89,29 @@ const viewEmployees = () => {
 
 // Function to view all roles
 
-const viewRoles
+const viewRoles = () => {
+  connection.query('SELECT * FROM role', (err, res) => {
+    if (err) throw err;
+    console.table(res);
+  
+  }
+  );
+  start();
+}
 
 
 // Function to view all departments
+
+const viewDepartments = () => {
+  connection.query('SELECT * FROM department', (err, res) => {
+    if (err) throw err;
+    console.table(res);
+  
+  }
+  );
+  start();
+}
+
 
 // - - - - - - - - - - ADD - - - - - - - - - -//
 
@@ -153,7 +172,7 @@ const addEmployee = () => {
       },
     ])
     .then((answer) => {
-      console.log(answer);
+      // console.log(answer);
       connection.query(
         `INSERT INTO employee (first_name, last_name, role_id, manager_id) values ('${answer.first_name}', '${answer.last_name}', '${answer.role_id}', '${answer.manager_id}')`,
         (err, res) => {
@@ -161,6 +180,8 @@ const addEmployee = () => {
           console.log(`${res.affectedRows} employee added.`);
         }
       );
+      start();
+
     });
 };
 
