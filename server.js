@@ -41,7 +41,7 @@ const start = () => {
         addMenuFunc();
       } else if (answer.mainMenu === "UPDATE") {
         //run function updateMenuFunc
-        console.log(`Run the ${answer.mainMenu} function`);
+        updateMenuFunc();
       }
     });
 };
@@ -98,7 +98,6 @@ const viewRoles = () => {
   );
   start();
 }
-
 
 // Function to view all departments
 
@@ -188,25 +187,25 @@ const addEmployee = () => {
 // Function to "Add new role" - addRole
 // What do I need when inserting a new role?
 
-// const addRole = () => {
-//   console.log('addRole is running');
-//   inquirer.prompt([
-//     {type: 'input',
-//     message: 'Role Name?',
-//     name: 'roleName'},
-//     {
-//       type: 'input',
-//       message: 'Role Salary?',
-//       name: 'roleSalary'
-//     },
-//     {
-//       type: 'input',
-//       message: 'Role ID?',
-//       name: 'roleID'
-//     },
-//   ])
+  // const addRole = () => {
+  //   console.log('addRole is running');
+  //   inquirer.prompt([
+  //     {type: 'input',
+  //     message: 'Role Name?',
+  //     name: 'roleName'},
+  //     {
+  //       type: 'input',
+  //       message: 'Role Salary?',
+  //       name: 'roleSalary'
+  //     },
+  //     {
+  //       type: 'input',
+  //       message: 'Role ID?',
+  //       name: 'roleID'
+  //     },
+  //   ])
 
-// }
+  // }
 
 // Function "Add new department" - addDepartment
 // What do I need when inserting a new department?
@@ -216,6 +215,31 @@ const addEmployee = () => {
 // }
 
 // - - - - - - - - - - UPDATE - - - - - - - - - -//
+
+const updateMenuFunc = () => {
+  inquirer
+    .prompt({
+      // What would you like to update?
+      name: "updateMenu",
+      type: "list",
+      message: "What would you like to update?",
+      choices: ["Update EMPLOYEE", "Update ROLE", "Update DEPARTMENT"],
+    })
+    .then((answer) => {
+      // Based on the answer, run an approprate function
+      if (answer.updateMenu === "Update EMPLOYEE") {
+        //run function updateEmployee
+        // console.log("viewEmployees selected");
+        console.log('updateEmployee();');
+      } else if (answer.updateMenu === "Update ROLE") {
+        //run function updateRole
+        console.log('updateRole();');
+      } else if (answer.updateMenu === "Update DEPARTMENT") {
+        //run function updateDepartment
+        console.log('updeateDepartment();');
+      }
+    });
+};
 
 // Connect to database
 connection.connect((err) => {
