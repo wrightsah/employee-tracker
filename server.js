@@ -145,8 +145,30 @@ const addEmployee = () => {
 // Function to "Add new role" - addRole
 // What do I need when inserting a new role?
 
+const addRole = () => {
+  console.log('addRole is running');
+  inquirer.prompt([
+    {type: 'input', 
+    message: 'Role Name?',
+    name: 'roleName'}, 
+    {
+      type: 'input',
+      message: 'Role Salary?', 
+      name: 'roleSalary'
+    }, 
+    {
+      type: 'input',
+      message: 'Role ID?', 
+      name: 'roleID'
+    },
+  ])
+
+}
+
 // Function "Add new department" - addDepartment
 // What do I need when inserting a new department?
+
+const addDepartment = () 
 
 // - - - - - - - - - - UPDATE - - - - - - - - - -//
 
