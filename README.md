@@ -9,6 +9,8 @@ Users will be able to view, add, and update departments, roles, and employees.
 
 ## Demonstration
 
+##### For some reason, this gif takes a while to load. 
+
 ![Demo](assets/employee-tracker-demo.gif)
 
 ## Installation 
