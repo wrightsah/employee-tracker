@@ -23,7 +23,7 @@ CREATE TABLE role (
 );
 -- CREATE the table "department"
 CREATE TABLE department (
-    id INT,
+    id INT auto_increment,
     name varchar(30) NOT NULL,
     PRIMARY KEY(id)
 );
@@ -34,3 +34,19 @@ VALUES ('Stephen', 'Wright', '1', '1');
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES ('Thom', 'Yorke', '2', '2');
+
+-- create sample roles
+INSERT INTO role (title, salary, department_id)
+VALUES ('Guest Services Representative', '24000', '2');
+
+-- create departments 
+INSERT INTO department (name)
+VALUES ('Engineering');
+INSERT INTO department (name)
+VALUES ('Guest Services');
+INSERT INTO department (name)
+VALUES ('Housekeeping');
+INSERT INTO department (name)
+VALUES ('Reservations');
+INSERT INTO department (name)
+VALUES ('Sales');

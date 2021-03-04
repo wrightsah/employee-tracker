@@ -2,7 +2,7 @@
 
 const mysql = require("mysql");
 const inquirer = require("inquirer");
-const consoletable = require("console.table");
+// const consoletable = require("console.table");
 
 // initialize database
 
@@ -59,9 +59,9 @@ const viewMenuFunc = () => {
       // Based on the answer, run an approprate function
       if (answer.viewMenu === "View all EMPLOYEES") {
         //run function viewEmployees
-        console.log("viewEmployees selected");
+        // console.log("viewEmployees selected");
         viewEmployees();
-      } else if (answer.viewMenu === "View all ROLES'") {
+      } else if (answer.viewMenu === "View all ROLES") {
         //run function viewRoles
         console.log("viewRoles");
       } else if (answer.viewMenu === "View all DEPARTMENTS") {
@@ -74,19 +74,23 @@ const viewMenuFunc = () => {
 // Function to view all employees
 
 const viewEmployees = () => {
-  console.log("viewEmployees is running");
+  // console.log("viewEmployees is running");
   connection.query("SELECT * FROM employee", (err, res) => {
     if (err) throw err;
-    console.log(res);
-    res.forEach(({ id, first_name, last_name, role_id, manager_id }) => {
-      console.table(res);
-        // `${id} | ${first_name} | ${last_name} | ${role_id} | ${manager_id}`
-      start();  
-    });
+    // console.log(res);
+    // res.forEach(({ id, first_name, last_name, role_id, manager_id }) => {
+    console.table(res);
+    // `${id} | ${first_name} | ${last_name} | ${role_id} | ${manager_id}`
+    // start();
+    // });
   });
+  start();
 };
 
 // Function to view all roles
+
+const viewRoles
+
 
 // Function to view all departments
 
@@ -126,49 +130,69 @@ const addMenuFunc = () => {
 const addEmployee = () => {
   console.log("addEmployee is running");
   inquirer
-  .prompt([
-    {
-    type: 'input', 
-    message: 'First Name?',
-    name: 'firstName'
-  }, 
-  {
-    type: 'input', 
-    message: 'Last Name?', 
-    name: 'lastName'
-  }])
-  connection.query("INSERT INTO employee");
-  if (err) throw err;
-  console.log(res);
+    .prompt([
+      {
+        type: "input",
+        message: "First Name?",
+        name: "first_name",
+      },
+      {
+        type: "input",
+        message: "Last Name?",
+        name: "last_name",
+      },
+      {
+        type: "input",
+        message: "Role?",
+        name: "role_id",
+      },
+      {
+        type: "input",
+        message: "Manager?",
+        name: "manager_id",
+      },
+    ])
+    .then((answer) => {
+      console.log(answer);
+      connection.query(
+        `INSERT INTO employee (first_name, last_name, role_id, manager_id) values ('${answer.first_name}', '${answer.last_name}', '${answer.role_id}', '${answer.manager_id}')`,
+        (err, res) => {
+          if (err) throw err;
+          console.log(`${res.affectedRows} employee added.`);
+        }
+      );
+    });
 };
 
 // Function to "Add new role" - addRole
 // What do I need when inserting a new role?
 
-const addRole = () => {
-  console.log('addRole is running');
-  inquirer.prompt([
-    {type: 'input', 
-    message: 'Role Name?',
-    name: 'roleName'}, 
-    {
-      type: 'input',
-      message: 'Role Salary?', 
-      name: 'roleSalary'
-    }, 
-    {
-      type: 'input',
-      message: 'Role ID?', 
-      name: 'roleID'
-    },
-  ])
+// const addRole = () => {
+//   console.log('addRole is running');
+//   inquirer.prompt([
+//     {type: 'input',
+//     message: 'Role Name?',
+//     name: 'roleName'},
+//     {
+//       type: 'input',
+//       message: 'Role Salary?',
+//       name: 'roleSalary'
+//     },
+//     {
+//       type: 'input',
+//       message: 'Role ID?',
+//       name: 'roleID'
+//     },
+//   ])
 
-}
+// }
 
 // Function "Add new department" - addDepartment
 // What do I need when inserting a new department?
 
-const addDepartment = () 
+// const addDepartment = () => {
+
+// }
 
 // - - - - - - - - - - UPDATE - - - - - - - - - -//
 
